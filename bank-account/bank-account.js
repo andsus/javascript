@@ -1,34 +1,34 @@
 export class BankAccount {
   amount
-  opened
+  isOpen
   constructor() {
     this.amount = 0
-    this.opened = false
+    this.isOpen = false
   }
 
   open() {
-    if (this.opened) throw new ValueError()
-    this.opened = true
+    if (this.isOpen) throw new ValueError()
+    this.isOpen = true
   }
 
   close() {
-    if (!this.opened) throw new ValueError()
-    this.opened = false
+    if (!this.isOpen) throw new ValueError()
+    this.isOpen = false
     this.amount = 0
   }
 
   deposit(amount) {
-    if (!this.opened || amount < 0 ) throw new ValueError()
+    if (!this.isOpen || amount <= 0 ) throw new ValueError()
     this.amount += amount
   }
 
   withdraw(amount) {
-    if (!this.opened || amount > this.amount || amount < 0 ) throw new ValueError()
+    if (!this.isOpen || amount > this.amount || amount <= 0 ) throw new ValueError()
     this.amount -= amount
   }
 
   get balance() {
-    if (!this.opened) throw new ValueError()
+    if (!this.isOpen) throw new ValueError()
     return this.amount
   }
 }

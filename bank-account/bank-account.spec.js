@@ -106,6 +106,15 @@ describe('Bank Account', () => {
     }).toThrow(ValueError);
   });
 
+  test('cannot withdraw 0 amount', () => {
+    const account = new BankAccount();
+    account.open();
+    account.deposit(100);
+    expect(() => {
+      account.withdraw(0);
+    }).toThrow(ValueError);
+  });
+
   test('cannot deposit negative amount', () => {
     const account = new BankAccount();
     account.open();
@@ -113,4 +122,13 @@ describe('Bank Account', () => {
       account.deposit(-50);
     }).toThrow(ValueError);
   });
+
+  test('cannot deposit 0 amount', () => {
+    const account = new BankAccount();
+    account.open();
+    expect(() => {
+      account.deposit(0);
+    }).toThrow(ValueError);
+  });
+
 });
